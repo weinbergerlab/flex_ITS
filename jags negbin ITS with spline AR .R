@@ -15,6 +15,11 @@ jagsExists = url.exists("http://sourceforge.net/projects/mcmc-jags/files/latest/
 if(jagsExists) {
   txt = getURL("http://sourceforge.net/projects/mcmc-jags/files/latest/download")}
 
+
+#Set working directory: default to desktop
+desktop<-file.path(Sys.getenv("USERPROFILE"),"Desktop")
+setwd(desktop)
+
 #### Use jags package ####
 #install.packages("rjags")
 library(rjags)
@@ -28,12 +33,12 @@ data.start<-1 #Determines which year to include; set to 1 to include full TS, to
 library(splines, quietly = TRUE)
 set.seed(1)
 
-setwd('C:/Users/DMW63/Desktop/')
 ##################################################
 ##################################################
 #SECTION 1: IMPORTING AND FORMATTING TIME SERIES
-
-in.data<-read.csv('./prelog_Brazil_processed_data.csv')
+#Download sample data directly from Github
+git.data= getURL("https://raw.githubusercontent.com/weinbergerlab/flex_ITS/master/prelog_Brazil_processed_data.csv")
+in.data<-read.csv(text=git.data)
 
 output_directory<-'./output'
 dir.create(output_directory, recursive=TRUE, showWarnings = FALSE)
