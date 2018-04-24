@@ -228,7 +228,7 @@ fitted<-exp(pred.ipd.quantiles2[grepl("log.lambda[", rownames(pred.ipd.quantiles
 counterfact<-exp(pred.ipd.quantiles2[grepl("log.lambda.novax", rownames(pred.ipd.quantiles2), fixed=TRUE), c(1,3,5)])
 rr.vax<-exp(pred.ipd.quantiles2[grepl("log.rr.vax", rownames(pred.ipd.quantiles2), fixed=TRUE), c(1,3,5)])
 
-pdf("plots.pdf")
+pdf("./output/plots.pdf")
 #PLOT PREDICTED VS OBSERVED
 matplot(counterfact, type='l',lty=c(2,1,2), col='lightgray', ylim=c(0,max(fitted)*1.2) )
 points(fitted[,2], type="l", col='red')
