@@ -229,15 +229,15 @@ counterfact<-exp(pred.ipd.quantiles2[grepl("log.lambda.novax", rownames(pred.ipd
 rr.vax<-exp(pred.ipd.quantiles2[grepl("log.rr.vax", rownames(pred.ipd.quantiles2), fixed=TRUE), c(1,3,5)])
 
 pdf("./output/plots.pdf")
-#PLOT PREDICTED VS OBSERVED
-matplot(counterfact, type='l',lty=c(2,1,2), col='lightgray', ylim=c(0,max(fitted)*1.2) )
+ #PLOT PREDICTED VS OBSERVED
+matplot(counterfact, type='l',lty=c(2,1,2), col='lightgray', ylim=c(0,max(fitted)*1.2), bty='l' )
 points(fitted[,2], type="l", col='red')
 points(data.fit$outcome, type="p")
 title("observed vs expected")
-
-
+  
+  
 #Plot log rate ratio trajectory
-matplot(rr.vax, type='l',lty=c(2,1,2), col='lightgray', ylim=c(0.5,1.5))
+matplot(rr.vax, type='l',lty=c(2,1,2), col='lightgray', ylim=c(0.5,1.5),bty='l')
 abline(h=1)
 title("Rate ratio trajectory")
 dev.off()
