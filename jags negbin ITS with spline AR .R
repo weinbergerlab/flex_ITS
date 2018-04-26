@@ -16,9 +16,14 @@ if(jagsExists) {
   txt = getURL("http://sourceforge.net/projects/mcmc-jags/files/latest/download")}
 
 
-#Set working directory: default to desktop
+#Set working directory: default to desktop--different path for windows vs Mac
+if(.Platform$OS.type == "windows") {
 desktop<-file.path(Sys.getenv("USERPROFILE"),"Desktop")
+} else {
+desktop<- "~/Desktop"
+}
 setwd(desktop)
+
 
 #### Use jags package ####
 #install.packages("rjags")
